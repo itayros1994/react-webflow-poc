@@ -10,6 +10,7 @@ function App() {
     >
       <h1>Hello Webflow 👋</h1>
       <p>This React component is rendered from an external JS bundle.</p>
+      <p>Monday CRM.</p>
     </div>
   );
 }
