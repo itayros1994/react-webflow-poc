@@ -1,16 +1,31 @@
+import { useState } from "react";
+import HeroSection from "./components/pricing/HeroSection";
+import PricingGrid from "./components/pricing/PricingGrid";
+import FeatureComparisonTable from "./components/pricing/FeatureComparisonTable";
+import FAQSection from "./components/pricing/FAQSection";
+import CTASection from "./components/pricing/CTASection";
+import { PLANS, COMPARISON_FEATURES, FAQ_ITEMS } from "./data/pricing";
+import type { BillingPeriod } from "./types/pricing";
+import "./pricing.css";
+
 function App() {
+  const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>("monthly");
+
   return (
-    <div
-      style={{
-        padding: "24px",
-        border: "1px solid #ddd",
-        borderRadius: "12px",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h1>Hello Webflow 👋</h1>
-      <p>This React component is rendered from an external JS bundle.</p>
-      <p>Monday CRM.</p>
+    <div className="pricing-page">
+      <div className="pricing-page__container">
+        <HeroSection
+          billingPeriod={billingPeriod}
+          onBillingChange={setBillingPeriod}
+        />
+        <PricingGrid plans={PLANS} billingPeriod={billingPeriod} />
+        <FeatureComparisonTable
+          features={COMPARISON_FEATURES}
+          billingPeriod={billingPeriod}
+        />
+        <FAQSection items={FAQ_ITEMS} />
+        <CTASection />
+      </div>
     </div>
   );
 }
